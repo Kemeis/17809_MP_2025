@@ -21,24 +21,31 @@
       align-items: center;
     }
 
-    .panorama-wrapper {
+    #panorama {
       width: 100vw;
       height: 100vh;
-      overflow: hidden;
-    }
-
-    .panorama-wrapper img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;      /* wypełnia ekran jak panorama */
-      object-position: center; /* centrowanie zdjęcia */
-      display: block;
     }
   </style>
 </head>
 <body>
-  <div class="panorama-wrapper">
-    <img src="aa.png" alt="Panorama 17809_Mp_2025">
-  </div>
+  <div id="panorama"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/three@0.105.2/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/pchen66/panolens.js@0.10.2/build/panolens.min.js"></script>
+
+  <script>
+    // Ładowanie panoramy
+    const pano = new PANOLENS.ImagePanorama('aa.png'); // Twoja panorama
+
+    const viewer = new PANOLENS.Viewer({
+      container: document.querySelector('#panorama'),
+      output: 'console',
+      autoRotate: false // Opcjonalnie: możesz ustawić true, jeśli chcesz, żeby panorama obracała się automatycznie
+    });
+
+    viewer.add(pano); // Dodaj panoramę do widoku
+    viewer.setPanorama(pano); // Ustaw jako początkową
+  </script>
 </body>
 </html>
+
