@@ -2,7 +2,7 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
-  <title>17809_Mp_2025 – Panorama</title>
+  <title>Virtual Tour - 17809_MP_2025</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <style>
@@ -14,7 +14,7 @@
 
     body {
       height: 100vh;
-      overflow: hidden; /* brak przewijania */
+      overflow: hidden;
       background: #000;
       display: flex;
       justify-content: center;
@@ -34,13 +34,12 @@
   <script src="https://cdn.jsdelivr.net/gh/pchen66/panolens.js@0.10.2/build/panolens.min.js"></script>
 
   <script>
-    // Ładowanie panoramy
     const pano = new PANOLENS.ImagePanorama('aa.png'); // Twoja panorama
 
     const viewer = new PANOLENS.Viewer({
       container: document.querySelector('#panorama'),
       output: 'console',
-      autoRotate: false // Opcjonalnie: możesz ustawić true, jeśli chcesz, żeby panorama obracała się automatycznie
+      autoRotate: false // Opcjonalnie: możesz ustawić true, żeby panorama obracała się automatycznie
     });
 
     viewer.add(pano); // Dodaj panoramę do widoku
@@ -48,4 +47,5 @@
   </script>
 </body>
 </html>
+
 
