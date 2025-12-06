@@ -6,45 +6,91 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <style>
-    * {
+    html, body {
       margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+      height: 100%;
+      overflow: hidden;
+      font-family: sans-serif;
     }
 
-    body {
-      height: 100vh;
-      overflow: hidden;
-      background: #000;
+    #buttons {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 10;
+      display: block;
+      width: 250px;
+      transition: width 0.3s;
+      background-color: rgba(255, 255, 255, 0.7);
+      border-radius: 8px;
+      padding: 10px;
+    }
+
+    .button-row {
       display: flex;
-      justify-content: center;
-      align-items: center;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .nav-button {
+      padding: 10px 16px;
+      margin: 5px 0;
+      font-size: 14px;
+      background-color: #ffffffcc;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+      width: 48%;
+    }
+
+    .nav-button:hover {
+      background-color: #ddd;
     }
 
     #panorama {
-      width: 100vw;
-      height: 100vh;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      bottom: 0;
     }
   </style>
 </head>
 <body>
+
+  <div id="buttons">
+    <div class="button-row">
+      <button class="nav-button" onclick="viewer.setPanorama(pano22)">22.11.25</button>
+      <button class="nav-button" onclick="viewer.setPanorama(pano140)">6.12.25 H140</button>
+      <button class="nav-button" onclick="viewer.setPanorama(pano150)">6.12.25 H150</button>
+    </div>
+  </div>
+
   <div id="panorama"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/three@0.105.2/build/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/pchen66/panolens.js@0.10.2/build/panolens.min.js"></script>
 
   <script>
-    const pano = new PANOLENS.ImagePanorama('aff.jpeg'); // Twoja panorama
+    // Panoramy
+    const pano22  = new PANOLENS.ImagePanorama('aff.jpeg');    // 22.11.25
+    const pano140 = new PANOLENS.ImagePanorama('ac140.jpeg');  // 6.12.25 h140
+    const pano150 = new PANOLENS.ImagePanorama('ac150.jpeg');  // 6.12.25 h150 — startowa
 
     const viewer = new PANOLENS.Viewer({
       container: document.querySelector('#panorama'),
       output: 'console',
-      autoRotate: false // Opcjonalnie: możesz ustawić true, żeby panorama obracała się automatycznie
+      autoRotate: false
     });
 
-    viewer.add(pano); // Dodaj panoramę do widoku
-    viewer.setPanorama(pano); // Ustaw jako początkową
+    viewer.add(pano22);
+    viewer.add(pano140);
+    viewer.add(pano150);
+
+    viewer.setPanorama(pano150); // Start = ac150.jpeg
   </script>
+
 </body>
 </html>
 
